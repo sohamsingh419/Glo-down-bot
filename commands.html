@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commands — YourBot</title>
+  <meta name="description" content="Complete command reference for YourBot: download commands, settings, cookies, playlists, images and admin tools.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>
+      YourBot
+    </a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="commands.html" class="active">Commands</a>
+      <a href="guide.html">Guide</a>
+      <a href="deploy.html">Self-Host</a>
+      <a href="faq.html">FAQ</a>
+      <a href="https://t.me/YourBotUsername" class="nav-cta" target="_blank" rel="noopener">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" style="padding-bottom:60px">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Commands</div>
+    <h1>Command reference</h1>
+    <p>Every command the bot understands. Most of the time you won't need any of them — just send a link — but they're here when you want fine control.</p>
+  </div>
+
+  <div class="cmd-filter">
+    <label class="cmd-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="cmdSearch" type="text" placeholder="Search commands… (try: cookie, split, format)" autocomplete="off">
+    </label>
+    <button class="chip on" data-filter="all">All</button>
+    <button class="chip" data-filter="user">User</button>
+    <button class="chip" data-filter="admin">Admin</button>
+  </div>
+
+  <!-- ============ BASICS ============ -->
+  <h3 class="cmd-group-ttl">Getting around</h3>
+
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/start</span><span class="cmd-badge user">user</span></div>
+    <p>Starts the bot and shows the welcome message. First stop for every new user.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/help</span><span class="cmd-badge user">user</span></div>
+    <p>The full in-bot help: basic usage, playlists, cookies, cleaning, settings, tags, links and quick commands — all in one message.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/lang</span><span class="cmd-badge user">user</span></div>
+    <p>Switch the interface language. 25+ languages available including English, Hindi, Arabic, Russian, Spanish and Turkish.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/settings</span><span class="cmd-badge user">user</span></div>
+    <p>Opens the settings menu: quality, subtitles, keyboard, NSFW blur, cookies and everything personal in one place.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/usage</span><span class="cmd-badge user">user</span></div>
+    <p>Shows your personal download history and statistics.</p>
+  </div>
+
+  <!-- ============ DOWNLOADS ============ -->
+  <h3 class="cmd-group-ttl">Downloading</h3>
+
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">URL</span><span class="cmd-use">just paste a link</span><span class="cmd-badge user">user</span></div>
+    <p>No command needed — send any video or image URL and the bot downloads it. Up to 10 URLs in one message when quality-selection mode is active.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/audio</span><span class="cmd-use">/audio URL</span><span class="cmd-badge user">user</span></div>
+    <p>Extracts the audio track from a video and sends it as a playable audio file. Supports playlist ranges too.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/vid</span><span class="cmd-use">/vid FROM-TO URL</span><span class="cmd-badge user">user</span></div>
+    <p>Downloads a range of items from a playlist. <span class="inline-code">/vid 3-7 URL</span> = items 3 to 7, <span class="inline-code">/vid -3-7 URL</span> = counting from the end.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/playlist</span><span class="cmd-use">/playlist URL</span><span class="cmd-badge user">user</span></div>
+    <p>Playlist download helper. You can also append <span class="inline-code">*1*5</span> to any playlist URL directly.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/img</span><span class="cmd-use">/img [range] URL</span><span class="cmd-badge user">user</span></div>
+    <p>Downloads images, photos and full galleries (gallery-dl). <span class="inline-code">/img 11-20 URL</span> grabs items 11–20, <span class="inline-code">/img 11- URL</span> grabs from 11 to the end. Up to 1000 files per run.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/link</span><span class="cmd-use">/link [quality] URL</span><span class="cmd-badge user">user</span></div>
+    <p>Returns direct download links instead of the file. Qualities: <span class="inline-code">144–4320</span>, or shortcuts like <span class="inline-code">720p</span>, <span class="inline-code">1080p</span>, <span class="inline-code">4k</span>, <span class="inline-code">8k</span>.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/list</span><span class="cmd-use">/list URL</span><span class="cmd-badge user">user</span></div>
+    <p>Lists every format available for a link — resolutions, codecs, file sizes — so you can pick an exact format ID.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/search</span><span class="cmd-badge user">user</span></div>
+    <p>Opens inline video search via <span class="inline-code">@vid</span>. On desktop, just type <span class="inline-code">@vid your query</span> in any chat.</p>
+  </div>
+
+  <!-- ============ QUALITY & OUTPUT ============ -->
+  <h3 class="cmd-group-ttl">Quality &amp; output</h3>
+
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/format</span><span class="cmd-use">/format [144-4320] | 720p | 1080p | 4k | 8k | best | ask | id N</span><span class="cmd-badge user">user</span></div>
+    <p>Sets your download quality. <span class="inline-code">ask</span> shows a quality menu for every link; <span class="inline-code">id 134</span> pins a specific format ID from <span class="inline-code">/list</span>.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/subs</span><span class="cmd-use">/subs [lang] | auto | off</span><span class="cmd-badge user">user</span></div>
+    <p>Subtitle settings — download subs in your language, use auto-translated tracks, or turn them off. Embedded subs are limited to 720p / 500 MB / 1.5 h.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/split</span><span class="cmd-use">/split 100mb-2000mb</span><span class="cmd-badge user">user</span></div>
+    <p>Splits large videos into parts of your chosen size — lossless cutting with ffmpeg.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/mediainfo</span><span class="cmd-use">/mediainfo on | off</span><span class="cmd-badge user">user</span></div>
+    <p>Attaches full MediaInfo (codec, bitrate, resolution, duration) to downloaded files.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/tags</span><span class="cmd-badge user">user</span></div>
+    <p>Shows your saved tags. Add hashtags after any URL (<span class="inline-code">URL #tag1 #tag2</span>) and they'll appear in captions.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/keyboard</span><span class="cmd-use">/keyboard off | 1x3 | 2x3 | full</span><span class="cmd-badge user">user</span></div>
+    <p>Reply-keyboard layout with your favourite quick actions.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/nsfw</span><span class="cmd-use">/nsfw on | off</span><span class="cmd-badge user">user</span></div>
+    <p>Toggles the spoiler blur on NSFW content.</p>
+  </div>
+
+  <!-- ============ COOKIES ============ -->
+  <h3 class="cmd-group-ttl">Cookies &amp; private content</h3>
+
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">cookie.txt</span><span class="cmd-use">send as document</span><span class="cmd-badge user">user</span></div>
+    <p>The easiest way: export your browser cookies as <b>cookie.txt</b> and send the file to the bot. Private and age-restricted content unlocked.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/save_as_cookie</span><span class="cmd-badge user">user</span></div>
+    <p>Paste cookie data as plain text and the bot saves it as your cookie file.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/cookie</span><span class="cmd-use">/cookie [youtube | tiktok | x | custom] [index]</span><span class="cmd-badge user">user</span></div>
+    <p>Downloads the bot's own cookies for a service. <span class="inline-code">/cookie youtube 1</span> picks a specific source by index.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/check_cookie</span><span class="cmd-badge user">user</span></div>
+    <p>Validates your cookies against a test video so you know they still work before a big download.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/cookies_from_browser</span><span class="cmd-badge user">user</span></div>
+    <p>Extracts cookies directly from a browser profile.</p>
+  </div>
+
+  <!-- ============ MAINTENANCE ============ -->
+  <h3 class="cmd-group-ttl">Maintenance</h3>
+
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/clean</span><span class="cmd-use">/clean [all | cookies | logs | tags | format | split | mediainfo | sub | keyboard]</span><span class="cmd-badge user">user</span></div>
+    <p>Cleans your data. Without arguments it removes media files only; <span class="inline-code">/clean all</span> wipes everything.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/uncache</span><span class="cmd-use">/uncache URL</span><span class="cmd-badge user">user</span></div>
+    <p>Removes a URL from the cache so the next request downloads a fresh copy.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/proxy</span><span class="cmd-use">/proxy on | off</span><span class="cmd-badge user">user</span></div>
+    <p>Routes your downloads through the bot's proxy pool (HTTP / SOCKS4 / SOCKS5) — useful for region-locked content.</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/args</span><span class="cmd-badge user">user</span></div>
+    <p>Advanced: pass extra yt-dlp arguments for a download (power users only).</p>
+  </div>
+  <div class="cmd-card" data-type="user">
+    <div class="cmd-top"><span class="cmd-name">/add_bot_to_group</span><span class="cmd-badge user">user</span></div>
+    <p>Shows the benefits of adding the bot to a group — doubled limits, topic sorting, albums and more.</p>
+  </div>
+
+  <!-- ============ ADMIN ============ -->
+  <h3 class="cmd-group-ttl">Admin only</h3>
+
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/block_user</span><span class="cmd-use">/block_user &lt;user_id&gt;</span><span class="cmd-badge admin">admin</span></div>
+    <p>Blocks a user from the bot entirely.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/unblock_user</span><span class="cmd-use">/unblock_user &lt;user_id&gt;</span><span class="cmd-badge admin">admin</span></div>
+    <p>Lifts a block.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/ignore_user</span><span class="cmd-use">/ignore_user &lt;user_id&gt;</span><span class="cmd-badge admin">admin</span></div>
+    <p>Silently ignores a user without notifying them.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/unignore_user</span><span class="cmd-use">/unignore_user &lt;user_id&gt;</span><span class="cmd-badge admin">admin</span></div>
+    <p>Stops ignoring a user.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/ban_time</span><span class="cmd-use">/ban_time &lt;user_id&gt; &lt;duration&gt;</span><span class="cmd-badge admin">admin</span></div>
+    <p>Temporary ban with an automatic expiry.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/log</span><span class="cmd-use">/log &lt;user_id&gt;</span><span class="cmd-badge admin">admin</span></div>
+    <p>Fetches the activity log for a specific user.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/all</span><span class="cmd-use">/all &lt;user_id&gt;</span><span class="cmd-badge admin">admin</span></div>
+    <p>Full user details: settings, history, limits state.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/reload_cache</span><span class="cmd-badge admin">admin</span></div>
+    <p>Reloads the database cache manually.</p>
+  </div>
+  <div class="cmd-card" data-type="admin">
+    <div class="cmd-top"><span class="cmd-name">/auto_cache</span><span class="cmd-use">/auto_cache on | off</span><span class="cmd-badge admin">admin</span></div>
+    <p>Toggles automatic cache reloading (default: every hour).</p>
+  </div>
+
+  <div class="no-result" id="noResult">No commands match that search. Try “cookie”, “format” or “split”.</div>
+
+  <div class="note info" style="margin-top:26px">
+    <span class="ni">💡</span>
+    <p>Rate limits keep things fair: <b>20 commands per minute</b> per user (40 in groups), and <b>5 links/min · 60/hour · 1000/day</b>. Hitting the limit? Wait a moment and try again.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>YourBot</a>
+        <p>A fast, free Telegram bot for downloading videos, audio and images from 1000+ websites.</p>
+      </div>
+      <div><h4>Bot</h4><a href="https://t.me/YourBotUsername" target="_blank" rel="noopener">Open in Telegram</a><a href="https://t.me/YourChannel" target="_blank" rel="noopener">News channel</a><a href="https://t.me/YourSupport" target="_blank" rel="noopener">Support</a></div>
+      <div><h4>Docs</h4><a href="features.html">Features</a><a href="commands.html">Commands</a><a href="guide.html">User guide</a><a href="faq.html">FAQ</a></div>
+      <div><h4>Hosting</h4><a href="deploy.html">Self-host guide</a><a href="deploy.html#env">Environment variables</a><a href="faq.html#troubleshooting">Troubleshooting</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> YourBot. Not affiliated with Telegram or any listed platform.</span>
+      <span>Respect copyrights — download only what you have the right to.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

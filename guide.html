@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide — YourBot</title>
+  <meta name="description" content="Step-by-step guide to YourBot: first download, quality selection, playlists, audio, subtitles, image galleries, cookies for private content and tags.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>
+      YourBot
+    </a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="commands.html">Commands</a>
+      <a href="guide.html" class="active">Guide</a>
+      <a href="deploy.html">Self-Host</a>
+      <a href="faq.html">FAQ</a>
+      <a href="https://t.me/YourBotUsername" class="nav-cta" target="_blank" rel="noopener">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; User guide</div>
+    <h1>The complete user guide</h1>
+    <p>From your very first link to playlists, cookies and subtitles — everything explained with copy-paste examples.</p>
+  </div>
+
+  <div class="docs">
+    <aside class="toc">
+      <div class="toc-ttl">On this page</div>
+      <a href="#start">1. Quick start</a>
+      <a href="#first">2. Your first download</a>
+      <a href="#quality">3. Choosing quality</a>
+      <a href="#batch">4. Multiple links</a>
+      <a href="#playlists">5. Playlists &amp; ranges</a>
+      <a href="#audio">6. Audio only</a>
+      <a href="#subs">7. Subtitles</a>
+      <a href="#images">8. Images &amp; albums</a>
+      <a href="#cookies">9. Cookies setup</a>
+      <a href="#links">10. Direct links</a>
+      <a href="#tags">11. Tags &amp; captions</a>
+      <a href="#cleanup">12. Cleaning up</a>
+    </aside>
+
+    <main class="doc-body">
+
+      <section id="start">
+        <h2>1. Quick start</h2>
+        <p>Open <a href="https://t.me/YourBotUsername" target="_blank" rel="noopener">@YourBotUsername</a> and press <b>Start</b>. If the bot asks you to join our channel <a href="https://t.me/YourChannel" target="_blank" rel="noopener">@YourChannel</a> first — join, then resend your link. That's the whole onboarding.</p>
+        <div class="note warn"><span class="ni">⚠️</span><p>Don't leave the channel afterwards — the bot checks membership and leaving will get you restricted.</p></div>
+      </section>
+
+      <section id="first">
+        <h2>2. Your first download</h2>
+        <p>Copy a link to any video — a YouTube clip, an Instagram reel, a TikTok — and paste it into the chat. The bot detects the site, fetches the media and uploads it back to you. That's it.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>https://www.youtube.com/watch?v=dQw4w9WgXcQ</pre>
+        </div>
+        <p>Links must start with <span class="inline-code">https://</span> or <span class="inline-code">http://</span> — plain text without a scheme won't be recognised.</p>
+      </section>
+
+      <section id="quality">
+        <h2>3. Choosing quality</h2>
+        <p>By default the bot picks a sensible quality automatically. To take control, use <span class="inline-code">/format</span>:</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Command</th><th>Behaviour</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">/format ask</span></td><td>Shows a quality menu with buttons for every link you send</td></tr>
+              <tr><td><span class="inline-code">/format 720p</span></td><td>Always downloads 720p (also 144p … 1080p, 4k, 8k)</td></tr>
+              <tr><td><span class="inline-code">/format best</span></td><td>Always the highest available quality</td></tr>
+              <tr><td><span class="inline-code">/format id 134</span></td><td>Pins an exact format ID (find IDs with <span class="inline-code">/list URL</span>)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:12px">All quality settings live in <span class="inline-code">/settings</span> too, if you prefer buttons over typing.</p>
+      </section>
+
+      <section id="batch">
+        <h2>4. Multiple links at once</h2>
+        <p>In quality-selection mode (<span class="inline-code">/format ask</span>) you can send up to <b>10 URLs in a single message</b> — each on its own line or separated by spaces. The bot queues them all and picks up where it left off if anything interrupts.</p>
+      </section>
+
+      <section id="playlists">
+        <h2>5. Playlists &amp; ranges</h2>
+        <p>Append a range to the end of any playlist URL: <span class="inline-code">URL*start*end</span>. Negative numbers count from the end.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">examples — copy &amp; send</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre># First 5 videos of a YouTube playlist
+https://youtu.be/playlist?list=PL...*1*5
+
+# Only the 3rd video
+https://youtu.be/playlist?list=PL...*3*3
+
+# First 10 videos from a TikTok profile (needs cookies)
+https://www.tiktok.com/@USERNAME*1*10
+
+# First 3 Instagram stories (needs cookies)
+https://www.instagram.com/stories/USERNAME*1*3
+
+# First 3 videos from a VK page
+https://vkvideo.ru/@PAGE_NAME*1*3
+
+# Videos 2 to 4 from a Rutube channel
+https://rutube.ru/channel/CHANNEL_ID/videos*2*4
+
+# First 3 clips from a Twitch channel
+https://www.twitch.tv/USERNAME/clips*1*3</pre>
+        </div>
+        <p>Prefer a command? <span class="inline-code">/vid 3-7 URL</span> does the same as <span class="inline-code">URL*3*7</span>, and <span class="inline-code">/vid -3-7 URL</span> counts from the end. Works with <span class="inline-code">/audio</span> too. Limit: 50 items per run (100 in groups).</p>
+      </section>
+
+      <section id="audio">
+        <h2>6. Audio only</h2>
+        <p>Prefix any link with <span class="inline-code">/audio</span> and you'll get just the sound — neatly tagged with title and cover art where available.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/audio https://www.youtube.com/watch?v=...
+/audio https://soundcloud.com/artist/track</pre>
+        </div>
+      </section>
+
+      <section id="subs">
+        <h2>7. Subtitles</h2>
+        <p>Open <span class="inline-code">/subs</span> and pick a language, or set it directly:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/subs en      # English subtitles
+/subs hi      # Hindi subtitles
+/subs auto    # auto-generated / auto-translated
+/subs off     # no subtitles</pre>
+        </div>
+        <div class="note warn"><span class="ni">⚠️</span><p>Burning subtitles into video takes real processing power, so video+subs is capped at <b>720p · 500 MB · 1.5 hours</b>.</p></div>
+      </section>
+
+      <section id="images">
+        <h2>8. Images &amp; albums</h2>
+        <p><span class="inline-code">/img</span> downloads images, albums and whole galleries in full resolution:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">examples</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/img https://vk.com/wall-160916577_408508
+/img https://x.com/username/status/1234567890123456789
+/img https://imgur.com/a/abc123
+/img 11-20 https://example.com/album   # items 11..20 only
+/img 11- https://example.com/album      # from 11 to the end</pre>
+        </div>
+        <p>Instagram, Pinterest, VK, Reddit, Twitter/X, TikTok, DeviantArt, ArtStation, Imgur, Tumblr and dozens more. Up to <b>1000 files per run</b> — the bot stops automatically if a gallery goes quiet for 5 minutes.</p>
+      </section>
+
+      <section id="cookies">
+        <h2>9. Cookies — private &amp; age-restricted content</h2>
+        <p>Some content requires you to be logged in: age-restricted YouTube videos, private Instagram accounts, TikTok profiles, Instagram stories. The solution is cookies — your browser's login session, exported as a file.</p>
+
+        <h3>Option A — send a cookie file (easiest)</h3>
+        <ul>
+          <li>Install a cookie-export extension in your browser (e.g. “Get cookies.txt LOCALLY”)</li>
+          <li>Export cookies for the site you need and save the file as <b>cookie.txt</b></li>
+          <li>Send that file to the bot as a document — done</li>
+        </ul>
+
+        <h3>Option B — paste as text</h3>
+        <p>Send <span class="inline-code">/save_as_cookie</span> followed by the cookie content in Netscape format:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/save_as_cookie
+# Netscape HTTP Cookie File
+.youtube.com  TRUE  /  FALSE  111  ST-xxxxx  session_logininfo=AAA
+.youtube.com  TRUE  /  FALSE  222  ST-xxxxx  session_logininfo=BBB</pre>
+        </div>
+
+        <h3>Keep them healthy</h3>
+        <ul>
+          <li><span class="inline-code">/check_cookie</span> — verify your cookies still work</li>
+          <li><span class="inline-code">/cookie youtube</span> — download the bot's shared cookies for a service</li>
+          <li><span class="inline-code">/cookie youtube 2</span> — pick a backup cookie source by index</li>
+        </ul>
+        <div class="note danger"><span class="ni">🔒</span><p>Your cookie file is a login key. The bot stores it per-user for your downloads only — never share it in public chats.</p></div>
+      </section>
+
+      <section id="links">
+        <h2>10. Direct links instead of files</h2>
+        <p>Sometimes you want the raw download URL — for a download manager, another device, or sharing. <span class="inline-code">/link</span> gives you exactly that:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/link https://youtu.be/abc123         # best quality
+/link 720 https://youtu.be/abc123     # specific quality</pre>
+        </div>
+      </section>
+
+      <section id="tags">
+        <h2>11. Tags &amp; captions</h2>
+        <p>Add hashtags after any URL to label the download — they're saved and shown in the caption, which makes Telegram's Saved Messages search genuinely useful:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>https://tiktok.com/@user/video/123 #recipes #italian
+/tags     # list everything you've tagged</pre>
+        </div>
+        <p>You can also <b>reply to any video with text</b> to rewrite its caption.</p>
+      </section>
+
+      <section id="cleanup">
+        <h2>12. Cleaning up</h2>
+        <p>Want a fresh start? <span class="inline-code">/clean</span> removes your media files, and you can target specific data:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/clean            # media files only
+/clean all        # everything
+/clean cookies    # just cookies
+/clean tags       # just tags
+/clean format     # quality settings
+/clean sub        # subtitle settings</pre>
+        </div>
+        <p>And if a cached file looks stale, <span class="inline-code">/uncache URL</span> forces a fresh download next time.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>YourBot</a>
+        <p>A fast, free Telegram bot for downloading videos, audio and images from 1000+ websites.</p>
+      </div>
+      <div><h4>Bot</h4><a href="https://t.me/YourBotUsername" target="_blank" rel="noopener">Open in Telegram</a><a href="https://t.me/YourChannel" target="_blank" rel="noopener">News channel</a><a href="https://t.me/YourSupport" target="_blank" rel="noopener">Support</a></div>
+      <div><h4>Docs</h4><a href="features.html">Features</a><a href="commands.html">Commands</a><a href="guide.html">User guide</a><a href="faq.html">FAQ</a></div>
+      <div><h4>Hosting</h4><a href="deploy.html">Self-host guide</a><a href="deploy.html#env">Environment variables</a><a href="faq.html#troubleshooting">Troubleshooting</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> YourBot. Not affiliated with Telegram or any listed platform.</span>
+      <span>Respect copyrights — download only what you have the right to.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

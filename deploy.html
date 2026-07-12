@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Hosting — YourBot</title>
+  <meta name="description" content="Run your own copy of the bot: Render deployment step by step, Docker, manual VPS setup, environment variables and credentials.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>
+      YourBot
+    </a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="commands.html">Commands</a>
+      <a href="guide.html">Guide</a>
+      <a href="deploy.html" class="active">Self-Host</a>
+      <a href="faq.html">FAQ</a>
+      <a href="https://t.me/YourBotUsername" class="nav-cta" target="_blank" rel="noopener">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Self-hosting</div>
+    <h1>Run your own copy</h1>
+    <p>The bot is open source and runs anywhere Python does. The easiest route is Render (free tier works), but Docker and a plain VPS are covered too.</p>
+  </div>
+
+  <div class="docs">
+    <aside class="toc">
+      <div class="toc-ttl">On this page</div>
+      <a href="#creds">1. Get credentials</a>
+      <a href="#render">2. Deploy on Render</a>
+      <a href="#docker">3. Docker</a>
+      <a href="#vps">4. Manual VPS</a>
+      <a href="#env">5. Environment variables</a>
+      <a href="#session">6. Session string</a>
+      <a href="#firebase">7. Firebase (optional)</a>
+      <a href="#trouble">8. Troubleshooting</a>
+    </aside>
+
+    <main class="doc-body">
+
+      <section id="creds">
+        <h2>1. Get your credentials</h2>
+        <p>You need three things before anything else:</p>
+
+        <h3>Telegram API ID &amp; Hash</h3>
+        <ul>
+          <li>Go to <b>my.telegram.org</b> and log in with your phone number</li>
+          <li>Open <b>API development tools</b> and create a new application</li>
+          <li>Copy the <span class="inline-code">api_id</span> and <span class="inline-code">api_hash</span></li>
+        </ul>
+
+        <h3>Bot token</h3>
+        <ul>
+          <li>Open <b>@BotFather</b> in Telegram and send <span class="inline-code">/newbot</span></li>
+          <li>Follow the prompts, then copy the token (<span class="inline-code">123456:ABC-DEF…</span>)</li>
+        </ul>
+
+        <h3>Your admin ID</h3>
+        <ul>
+          <li>Message <b>@userinfobot</b> — it replies with your numeric user ID</li>
+        </ul>
+        <div class="note danger"><span class="ni">🔒</span><p>Never commit tokens or API hashes to a public repo. Use environment variables, always.</p></div>
+      </section>
+
+      <section id="render">
+        <h2>2. Deploy on Render (recommended)</h2>
+        <p>The repo ships with a ready-made <span class="inline-code">render.yaml</span> and <span class="inline-code">start.sh</span>, so deployment is mostly clicking:</p>
+        <ul>
+          <li><b>1.</b> Create an account at <b>render.com</b> and fork/clone the repository to your GitHub</li>
+          <li><b>2.</b> Dashboard → <b>New +</b> → <b>Background Worker</b> → connect your repo</li>
+          <li><b>3.</b> Runtime: <b>Python 3</b> (3.10+). Plan: <b>Standard</b> is recommended — video processing is hungry</li>
+          <li><b>4.</b> Build command:</li>
+        </ul>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">build command</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>apt-get update && apt-get install -y --no-install-recommends ffmpeg mediainfo fonts-noto-core fonts-noto-color-emoji fontconfig libass9 && rm -rf /var/lib/apt/lists/* && pip install -r requirements.txt</pre>
+        </div>
+        <ul>
+          <li><b>5.</b> Start command: <span class="inline-code">bash start.sh</span></li>
+          <li><b>6.</b> Add the environment variables from the <a href="#env">table below</a> (API_ID, API_HASH, BOT_TOKEN, BOT_NAME, ADMIN_IDS at minimum)</li>
+          <li><b>7.</b> Hit <b>Create Background Worker</b> and watch the logs — first build takes a few minutes</li>
+        </ul>
+        <div class="note info"><span class="ni">💡</span><p>ffmpeg, mediainfo and the Noto fonts are installed by the build command — the bot needs them for splitting, subtitle embedding and thumbnails.</p></div>
+      </section>
+
+      <section id="docker">
+        <h2>3. Docker</h2>
+        <p>If you prefer containers, fill in the <b>required section only</b> at the top of <span class="inline-code">CONFIG/_config.py</span> (bot name, admin IDs, API credentials, token) and build:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">bash</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>docker compose up -d --build</pre>
+        </div>
+        <p>The Docker setup also serves cookie files to the bot through the configuration-webserver container — that's what the default <span class="inline-code">COOKIE_URL</span> values point at.</p>
+      </section>
+
+      <section id="vps">
+        <h2>4. Manual VPS setup</h2>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">bash — Ubuntu / Debian</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre># system deps
+sudo apt update && sudo apt install -y python3.10 python3-pip ffmpeg mediainfo \
+  fonts-noto-core fonts-noto-color-emoji fontconfig libass9
+
+# code
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+cd YOUR_REPO
+pip install -r requirements.txt
+
+# edit CONFIG/_config.py with your credentials, then:
+python magic.py</pre>
+        </div>
+        <p>For 24/7 uptime, wrap it in <b>systemd</b> or run inside <b>tmux/screen</b>. A small 1 vCPU / 2 GB box handles light usage; video+subtitles work better with 4 GB+.</p>
+      </section>
+
+      <section id="env">
+        <h2>5. Environment variables</h2>
+        <h3>Required</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Variable</th><th>Description</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">API_ID</span></td><td>Telegram API ID from my.telegram.org</td><td><span class="inline-code">12345678</span></td></tr>
+              <tr><td><span class="inline-code">API_HASH</span></td><td>Telegram API hash</td><td><span class="inline-code">abc123…</span></td></tr>
+              <tr><td><span class="inline-code">BOT_TOKEN</span></td><td>Token from @BotFather</td><td><span class="inline-code">123456:ABC-DEF…</span></td></tr>
+              <tr><td><span class="inline-code">BOT_NAME</span></td><td>Bot username without @</td><td><span class="inline-code">mydownloadbot</span></td></tr>
+              <tr><td><span class="inline-code">ADMIN_IDS</span></td><td>Comma-separated admin user IDs</td><td><span class="inline-code">123456789,987654321</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Optional</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Variable</th><th>Description</th><th>Default</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">BOT_NAME_FOR_USERS</span></td><td>Name used in the database</td><td>same as BOT_NAME</td></tr>
+              <tr><td><span class="inline-code">ADMIN_USERNAME</span></td><td>Admin contact shown to users</td><td>@admin</td></tr>
+              <tr><td><span class="inline-code">ADMIN_GROUP_IDS</span></td><td>Admin group IDs (comma-separated)</td><td>—</td></tr>
+              <tr><td><span class="inline-code">ALLOWED_GROUP_IDS</span></td><td>Only these groups may use the bot</td><td>—</td></tr>
+              <tr><td><span class="inline-code">LOGS_ID</span></td><td>Channel ID for logs</td><td>0</td></tr>
+              <tr><td><span class="inline-code">SUBSCRIBE_CHANNEL</span></td><td>Required subscription channel ID</td><td>0</td></tr>
+              <tr><td><span class="inline-code">SUBSCRIBE_CHANNEL_URL</span></td><td>Invite link for that channel</td><td>—</td></tr>
+              <tr><td><span class="inline-code">USE_FIREBASE</span></td><td>Use Firebase instead of local JSON</td><td>false</td></tr>
+              <tr><td><span class="inline-code">YOUTUBE_COOKIE_URL</span></td><td>Direct URL to a YouTube cookies file</td><td>—</td></tr>
+              <tr><td><span class="inline-code">CHANNEL_GUARD_SESSION_STRING</span></td><td>User session for reading admin logs</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:14px">The bot works fine with <span class="inline-code">USE_FIREBASE=false</span> — all data lives in local JSON files, zero external services needed.</p>
+      </section>
+
+      <section id="session">
+        <h2>6. Session string (optional)</h2>
+        <p>Bots can't read a channel's admin log. If you want the channel-guard features, generate a user session string:</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">bash</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>python generate_session_string.py</pre>
+        </div>
+        <p>Paste the output into <span class="inline-code">CHANNEL_GUARD_SESSION_STRING</span>. Treat it like a password — it is one.</p>
+      </section>
+
+      <section id="firebase">
+        <h2>7. Firebase (optional)</h2>
+        <p>For multi-instance setups or a managed database, flip <span class="inline-code">USE_FIREBASE=true</span> and fill in the Firebase block in the config (email, password, and the web app config object: apiKey, authDomain, projectId, databaseURL, …). With Firebase off, the bot keeps everything in local JSON — simpler and perfectly fine for a single instance.</p>
+      </section>
+
+      <section id="trouble">
+        <h2>8. Troubleshooting</h2>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Symptom</th><th>Fix</th></tr></thead>
+            <tbody>
+              <tr><td><b>Bot doesn't start</b></td><td>Re-check <span class="inline-code">API_ID</span>, <span class="inline-code">API_HASH</span> and <span class="inline-code">BOT_TOKEN</span>. Read the service logs for the exact error.</td></tr>
+              <tr><td><b>Downloads fail</b></td><td>Make sure ffmpeg is installed (it's in the build command). Check disk space. For YouTube, refresh cookies.</td></tr>
+              <tr><td><b>YouTube asks to "verify you're human"</b></td><td>Update your cookies, or enable the PO-token provider (<span class="inline-code">YOUTUBE_POT_ENABLED</span>) with a bgutil instance.</td></tr>
+              <tr><td><b>Out of memory</b></td><td>Upgrade the plan, or lower <span class="inline-code">MAX_FILE_SIZE_GB</span> in the limits config.</td></tr>
+              <tr><td><b>Bot ignores messages in a group</b></td><td>Add the group ID to <span class="inline-code">ALLOWED_GROUP_IDS</span> — or leave it empty to allow all groups.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note ok" style="margin-top:16px"><span class="ni">✅</span><p>Stuck? Open an issue on the repo or ping <a href="https://t.me/YourSupport" target="_blank" rel="noopener">@YourSupport</a> with your logs.</p></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>YourBot</a>
+        <p>A fast, free Telegram bot for downloading videos, audio and images from 1000+ websites.</p>
+      </div>
+      <div><h4>Bot</h4><a href="https://t.me/YourBotUsername" target="_blank" rel="noopener">Open in Telegram</a><a href="https://t.me/YourChannel" target="_blank" rel="noopener">News channel</a><a href="https://t.me/YourSupport" target="_blank" rel="noopener">Support</a></div>
+      <div><h4>Docs</h4><a href="features.html">Features</a><a href="commands.html">Commands</a><a href="guide.html">User guide</a><a href="faq.html">FAQ</a></div>
+      <div><h4>Hosting</h4><a href="deploy.html">Self-host guide</a><a href="deploy.html#env">Environment variables</a><a href="faq.html#troubleshooting">Troubleshooting</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> YourBot. Not affiliated with Telegram or any listed platform.</span>
+      <span>Respect copyrights — download only what you have the right to.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

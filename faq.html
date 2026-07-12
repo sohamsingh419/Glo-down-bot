@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — YourBot</title>
+  <meta name="description" content="Frequently asked questions about YourBot: pricing, limits, cookies, supported sites, groups, privacy and troubleshooting.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>
+      YourBot
+    </a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="commands.html">Commands</a>
+      <a href="guide.html">Guide</a>
+      <a href="deploy.html">Self-Host</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="https://t.me/YourBotUsername" class="nav-cta" target="_blank" rel="noopener">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" style="max-width:860px;padding-bottom:60px">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; FAQ</div>
+    <h1>Questions, answered</h1>
+    <p>Everything people ask before (and after) their first download. Can't find your question? Ping <a href="https://t.me/YourSupport" target="_blank" rel="noopener">@YourSupport</a>.</p>
+  </div>
+
+  <!-- ================= GENERAL ================= -->
+  <h3 class="cmd-group-ttl" style="margin-top:30px">General</h3>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Is the bot really free?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Yes — downloading videos, audio and images from public links is completely free, with no watermarks and no ads. The only paid extras in DMs are 🔞 NSFW content and ☁️ cloud-storage files (1 ⭐ = $0.02), and inside groups even those are free.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Why do I have to join a channel first?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>The channel (<a href="https://t.me/YourChannel" target="_blank" rel="noopener">@YourChannel</a>) is where updates, downtime notices and new features are announced. Membership is required for DM usage — it keeps abuse down and the bot sustainable. Don't leave afterwards: the bot re-checks and leaving will get you restricted. Groups are exempt from this requirement.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Which sites are supported?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Over 1000 — everything yt-dlp and gallery-dl support: YouTube, Instagram, TikTok, X/Twitter, Facebook, VK, Pinterest, Reddit, Vimeo, Twitch, Rutube, SoundCloud, Dailymotion, Likee, Imgur, DeviantArt, ArtStation and many more. DRM-protected platforms (Netflix, Disney+, Prime Video…) are intentionally blocked, as are banks, messengers and government portals. Not sure about a site? Just send the link.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Is there a limit on file size?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Up to <b>8 GB per file</b> in DMs and <b>16 GB in groups</b>. A single download can run for up to 2 hours (4 in groups), and videos up to 12 hours long are supported. Larger than that? Use <span class="inline-code">/split</span> to cut the file into parts, or <span class="inline-code">/link</span> to grab a direct URL for your download manager.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Why was my download slow / queued?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Rate limits keep the service fast for everyone: <b>5 links/min, 60/hour, 1000/day</b> and 20 commands per minute (all doubled in groups). If you hit a limit, wait a minute and retry. Peak hours can also add a short queue — big files especially.</p>
+    </div></div>
+  </div>
+
+  <!-- ================= CONTENT ================= -->
+  <h3 class="cmd-group-ttl">Content &amp; privacy</h3>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Can I download private or age-restricted videos?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Yes, with cookies. Export your browser cookies as <b>cookie.txt</b> and send the file to the bot (or paste them with <span class="inline-code">/save_as_cookie</span>). The bot then downloads as your logged-in account. Full walkthrough in the <a href="guide.html#cookies">guide</a>.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Are my cookies safe?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Cookies are stored per-user and used only for your own download requests — never shared, never shown to other users. That said, a cookie file is effectively a login key: only send it in the bot's DM, never in groups, and rotate it if you suspect a leak. <span class="inline-code">/clean cookies</span> deletes yours at any time.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">What about NSFW content?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Adult content is detected, tagged, and blurred with a spoiler by default (toggle with <span class="inline-code">/nsfw on|off</span>). In DMs it's a paid feature via Telegram Stars (1 ⭐ = $0.02). In groups it's free with full metadata. Illegal content is strictly prohibited and blocked.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">What do you log?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>In DMs, downloads are logged and cached in private log-channels — this is what makes repeat downloads instant. Group content is <b>not</b> logged or cached (configurable per group). You can wipe your data any time with <span class="inline-code">/clean all</span>.</p>
+    </div></div>
+  </div>
+
+  <!-- ================= USAGE ================= -->
+  <h3 class="cmd-group-ttl">Usage</h3>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">How do I download a whole playlist?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Append a range to the URL — e.g. <span class="inline-code">URL*1*50</span> downloads items 1 to 50. Use <span class="inline-code">/vid 3-7 URL</span> for a specific slice. Up to 50 items per run in DM, 100 in groups. Examples for every platform are in the <a href="guide.html#playlists">guide</a>.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">How do I get just the audio?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Send <span class="inline-code">/audio URL</span>. The bot extracts the best audio track and sends it as a playable audio message with title and cover where available.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">The bot sent the wrong quality. How do I fix it?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Set your preference with <span class="inline-code">/format 1080p</span> (or any height), use <span class="inline-code">/format ask</span> to get a quality menu for every link, or <span class="inline-code">/format best</span> for maximum quality. See all formats a link offers with <span class="inline-code">/list URL</span>.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Can I use the bot in my group?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Please do — it's better there. All limits double, media sorts into topics, <span class="inline-code">/img</span> sends 10-item albums, NSFW is free, and there's no channel-subscription requirement. Add the bot as a member (admin rights recommended) and send <span class="inline-code">/add_bot_to_group</span> in the bot for details.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">Does it work in my language?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Probably — the interface speaks 25+ languages: English, Hindi, Arabic, Bengali, German, Spanish, Persian, French, Hausa, Indonesian, Italian, Japanese, Kazakh, Korean, Polish, Portuguese, Russian, Thai, Tagalog, Turkish, Ukrainian, Urdu, Uzbek, Vietnamese and Chinese. Switch with <span class="inline-code">/lang</span>.</p>
+    </div></div>
+  </div>
+
+  <!-- ================= TROUBLESHOOTING ================= -->
+  <h3 class="cmd-group-ttl" id="troubleshooting">Troubleshooting</h3>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">“Did not found a url link” — what did I do wrong?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>The link needs its scheme: it must start with <span class="inline-code">https://</span> or <span class="inline-code">http://</span>. Re-copy the full URL from your browser's address bar and send it again.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">YouTube says “Sign in to confirm you're not a bot”<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>YouTube occasionally challenges automated requests. Fixes, in order: 1) send fresh cookies (export from a logged-in browser), 2) try <span class="inline-code">/cookie youtube</span> to use the bot's shared cookies, 3) wait and retry — challenges usually expire. The bot also rotates through multiple cookie sources automatically.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">A video downloaded before but now fails<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Cached links can go stale. Send <span class="inline-code">/uncache URL</span> to drop the cached copy, then resend the link for a fresh download.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">The bot isn't replying at all<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Quick checklist: 1) Did you press <b>Start</b>? 2) Are you still a member of <a href="https://t.me/YourChannel" target="_blank" rel="noopener">@YourChannel</a>? 3) Hit a rate limit? Wait 60 seconds. 4) Still nothing — the bot may be restarting or down for maintenance; check the channel for status posts or contact <a href="https://t.me/YourSupport" target="_blank" rel="noopener">@YourSupport</a>.</p>
+    </div></div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-q" aria-expanded="false">I was blocked — why?<span class="pm"></span></button>
+    <div class="acc-a"><div class="acc-a-inner">
+      <p>Blocks happen for leaving the required channel, abusing rate limits, or attempting prohibited content. If you think it's a mistake, message <a href="https://t.me/YourSupport" target="_blank" rel="noopener">@YourSupport</a> with your user ID (from @userinfobot).</p>
+    </div></div>
+  </div>
+
+  <div class="cta-band reveal" style="margin-top:44px">
+    <h2>Still curious?</h2>
+    <p>The fastest way to learn the bot is to use it — your first download takes about ten seconds.</p>
+    <div class="hero-actions">
+      <a href="https://t.me/YourBotUsername" class="btn btn-primary" target="_blank" rel="noopener">Open @YourBotUsername</a>
+      <a href="guide.html" class="btn btn-ghost">Read the guide</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>YourBot</a>
+        <p>A fast, free Telegram bot for downloading videos, audio and images from 1000+ websites.</p>
+      </div>
+      <div><h4>Bot</h4><a href="https://t.me/YourBotUsername" target="_blank" rel="noopener">Open in Telegram</a><a href="https://t.me/YourChannel" target="_blank" rel="noopener">News channel</a><a href="https://t.me/YourSupport" target="_blank" rel="noopener">Support</a></div>
+      <div><h4>Docs</h4><a href="features.html">Features</a><a href="commands.html">Commands</a><a href="guide.html">User guide</a><a href="faq.html">FAQ</a></div>
+      <div><h4>Hosting</h4><a href="deploy.html">Self-host guide</a><a href="deploy.html#env">Environment variables</a><a href="faq.html#troubleshooting">Troubleshooting</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> YourBot. Not affiliated with Telegram or any listed platform.</span>
+      <span>Respect copyrights — download only what you have the right to.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

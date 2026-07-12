@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features — YourBot</title>
+  <meta name="description" content="Everything YourBot can do: video & audio downloads, playlists, images, subtitles, cookies for private content, splitting, tags, proxy, 25+ languages and more.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>
+      YourBot
+    </a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="features.html" class="active">Features</a>
+      <a href="commands.html">Commands</a>
+      <a href="guide.html">Guide</a>
+      <a href="deploy.html">Self-Host</a>
+      <a href="faq.html">FAQ</a>
+      <a href="https://t.me/YourBotUsername" class="nav-cta" target="_blank" rel="noopener">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Features</div>
+    <h1>Everything under the hood</h1>
+    <p>YourBot is more than a link downloader — it's a full media toolkit inside Telegram. Here's a complete tour of what it can do.</p>
+  </div>
+
+  <div class="docs">
+    <!-- TOC -->
+    <aside class="toc">
+      <div class="toc-ttl">On this page</div>
+      <a href="#video">Video downloads</a>
+      <a href="#audio">Audio extraction</a>
+      <a href="#playlists">Playlists &amp; ranges</a>
+      <a href="#images">Images &amp; galleries</a>
+      <a href="#quality">Quality &amp; formats</a>
+      <a href="#subs">Subtitles</a>
+      <a href="#cookies">Cookies &amp; private content</a>
+      <a href="#split">Splitting big files</a>
+      <a href="#links">Direct links</a>
+      <a href="#tags">Tags</a>
+      <a href="#keyboard">Keyboard layouts</a>
+      <a href="#search">Inline search</a>
+      <a href="#languages">25+ languages</a>
+      <a href="#proxy">Proxy support</a>
+      <a href="#nsfw">NSFW mode</a>
+      <a href="#cache">Smart cache</a>
+      <a href="#groups">Group mode</a>
+    </aside>
+
+    <main class="doc-body">
+
+      <section id="video">
+        <h2>🎬 Video downloads</h2>
+        <p>Send any video link and the bot downloads it straight into the chat — no redirects, no third-party sites. The engine behind it is <b>yt-dlp</b>, the most actively maintained downloader out there, so newly supported sites and fixes land all the time.</p>
+        <ul>
+          <li>1000+ supported platforms — YouTube, Instagram, TikTok, X/Twitter, Facebook, VK, Vimeo, Twitch, Rutube, Dailymotion, SoundCloud and many more</li>
+          <li>Up to <b>10 links in one message</b> when quality-selection mode is on (one per line or separated by spaces)</li>
+          <li>Live streams can be captured too</li>
+          <li>Reply to any video with text to <b>change its caption</b></li>
+          <li>Full <b>MediaInfo</b> data on request — codec, bitrate, resolution, duration</li>
+        </ul>
+        <div class="note info"><span class="ni">ℹ️</span><p>Not sure if a site works? Just send the link — the bot will tell you. DRM-protected platforms (Netflix, Disney+, etc.) are intentionally blocked.</p></div>
+      </section>
+
+      <section id="audio">
+        <h2>🎵 Audio extraction</h2>
+        <p>Turn any video into an audio file with a single command. The bot extracts the best available audio track and sends it as a playable Telegram audio message with title and thumbnail.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/audio https://www.youtube.com/watch?v=...</pre>
+        </div>
+        <p>Audio mode also understands playlist ranges, so you can rip a whole album in one go.</p>
+      </section>
+
+      <section id="playlists">
+        <h2>📋 Playlists &amp; ranges</h2>
+        <p>Downloading one-by-one is so 2019. Append a range to any playlist URL, or use the <span class="inline-code">/vid</span> command:</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Pattern</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">URL*1*5</span></td><td>Downloads items 1 to 5</td></tr>
+              <tr><td><span class="inline-code">URL*-1*-5</span></td><td>Downloads the <b>last</b> 5 items</td></tr>
+              <tr><td><span class="inline-code">URL*3*3</span></td><td>Only the 3rd item</td></tr>
+              <tr><td><span class="inline-code">/vid 3-7 URL</span></td><td>Same as <span class="inline-code">URL*3*7</span></td></tr>
+              <tr><td><span class="inline-code">/vid -3-7 URL</span></td><td>Items 3–7 counting from the end</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:14px">Ranges work on YouTube playlists, TikTok profiles, Instagram stories &amp; highlights, VK video pages, Rutube channels, Twitch clips, Vimeo groups and more — up to <b>50 items</b> per run (100 in groups).</p>
+      </section>
+
+      <section id="images">
+        <h2>🖼 Images &amp; galleries</h2>
+        <p>The <span class="inline-code">/img</span> command pulls full-resolution images, albums and entire galleries using <b>gallery-dl</b>. Files arrive as neat 10-item media albums.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/img https://www.instagram.com/p/C8x...
+/img 11-20 https://example.com/album
+/img 11- https://example.com/album</pre>
+        </div>
+        <p>Works with Instagram, Pinterest, VK, Reddit, Twitter/X, TikTok, DeviantArt, ArtStation, Imgur, Tumblr, 4chan and many others. Limits: up to <b>1000 files per run</b> in DM, 2000 in groups.</p>
+      </section>
+
+      <section id="quality">
+        <h2>🎚 Quality &amp; formats</h2>
+        <p>You're in control of what comes out the other end:</p>
+        <ul>
+          <li><span class="inline-code">/format ask</span> — the bot shows available qualities as buttons for every link</li>
+          <li><span class="inline-code">/format 720p</span> — lock a quality (144p up to 4K/8K where available)</li>
+          <li><span class="inline-code">/format best</span> — always the best possible quality</li>
+          <li><span class="inline-code">/format id 134</span> — pick an exact format ID from <span class="inline-code">/list</span></li>
+          <li><span class="inline-code">/list URL</span> — see every available format for a link before downloading</li>
+        </ul>
+      </section>
+
+      <section id="subs">
+        <h2>💬 Subtitles</h2>
+        <p>Download subtitles as separate files or embed them directly into the video. Auto-generated and auto-translated tracks are supported too.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/subs          # subtitle menu
+/subs en       # English subtitles
+/subs auto     # auto-translated track
+/subs off      # disable</pre>
+        </div>
+        <div class="note warn"><span class="ni">⚠️</span><p>Embedding subtitles is heavy processing, so video+subs is limited to <b>720p, 500 MB and 1.5 hours</b> for everyone.</p></div>
+      </section>
+
+      <section id="cookies">
+        <h2>🍪 Cookies &amp; private content</h2>
+        <p>Age-restricted YouTube video? Private Instagram post? Members-only content? Upload your browser cookies once and the bot downloads as <i>you</i>.</p>
+        <ul>
+          <li>Send a <b>cookie.txt</b> file as a document — done</li>
+          <li><span class="inline-code">/save_as_cookie</span> — paste cookie text right into the chat</li>
+          <li><span class="inline-code">/cookie [service]</span> — download the bot's cookies for a service (youtube / tiktok / x / custom)</li>
+          <li><span class="inline-code">/cookie youtube 1</span> — pick a specific cookie source by index</li>
+          <li><span class="inline-code">/cookies_from_browser</span> — extract cookies from your browser profile</li>
+          <li><span class="inline-code">/check_cookie</span> — verify that your cookies still work</li>
+        </ul>
+        <div class="note danger"><span class="ni">🔒</span><p>Cookies are stored per-user and only used for your own downloads. Never share your cookie file with strangers — it's a login key.</p></div>
+      </section>
+
+      <section id="split">
+        <h2>✂️ Splitting big files</h2>
+        <p>Telegram bots can upload up to 8–16 GB, but sometimes you want smaller chunks. Set a part size and the bot splits the video with ffmpeg — no quality loss, no re-encoding.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/split 500mb     # cut into 500 MB parts
+/split 100mb-2000mb</pre>
+        </div>
+      </section>
+
+      <section id="links">
+        <h2>🔗 Direct links</h2>
+        <p>Don't want the file in Telegram, just the raw URL? <span class="inline-code">/link</span> returns direct download links you can paste into any download manager or browser.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>/link https://youtu.be/abc123          # best quality
+/link 720 https://youtu.be/abc123      # specific quality
+/link 1080p URL · /link 4k URL · /link 8k URL</pre>
+        </div>
+      </section>
+
+      <section id="tags">
+        <h2>🏷 Tags</h2>
+        <p>Add hashtags after any URL and they'll be saved and shown in the file's caption — handy for sorting your Saved Messages into collections.</p>
+        <div class="codebox">
+          <div class="cb-head"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">chat</span><button class="copy-btn" data-copy>Copy</button></div>
+          <pre>https://tiktok.com/@user/video/123 #funny #cats
+/tags     # view all your saved tags</pre>
+        </div>
+      </section>
+
+      <section id="keyboard">
+        <h2>⌨️ Keyboard layouts</h2>
+        <p>Prefer tappable buttons over commands? Enable a reply keyboard with your most-used actions:</p>
+        <div class="kbd-grid">
+          <div class="kbd-tile"><b>/keyboard off</b>hide the keyboard</div>
+          <div class="kbd-tile"><b>/keyboard 1x3</b>single row of 3</div>
+          <div class="kbd-tile"><b>/keyboard 2x3</b>two rows of 3</div>
+          <div class="kbd-tile"><b>/keyboard full</b>all quick actions</div>
+        </div>
+      </section>
+
+      <section id="search">
+        <h2>🔍 Inline video search</h2>
+        <p>No link yet? Search from any chat. Type <span class="inline-code">@vid your query</span> (or press the search button via <span class="inline-code">/search</span>) and pick a result — the bot downloads it on the spot.</p>
+      </section>
+
+      <section id="languages">
+        <h2>🌍 25+ languages</h2>
+        <p>The entire interface — menus, buttons, errors, help — is translated. Switch any time with <span class="inline-code">/lang</span>:</p>
+        <p style="margin-top:8px">English · हिन्दी · العربية · বাংলা · Deutsch · Español · فارسی · Français · Hausa · Bahasa Indonesia · Italiano · 日本語 · Қазақ · 한국어 · Polski · Português · Русский · ไทย · Tagalog · Türkçe · Українська · اردو · Oʻzbek · Tiếng Việt · 中文</p>
+      </section>
+
+      <section id="proxy">
+        <h2>🛡 Proxy support</h2>
+        <p>Region-locked video? Route your downloads through a proxy: <span class="inline-code">/proxy on</span> and <span class="inline-code">/proxy off</span>. The bot supports HTTP, HTTPS, SOCKS4 and SOCKS5 proxies, and can rotate between multiple proxy servers automatically.</p>
+      </section>
+
+      <section id="nsfw">
+        <h2>🔞 NSFW mode</h2>
+        <p>Adult content is clearly marked, blurred by default, and logged separately. In DMs it's a paid feature (1 ⭐ = $0.02) — inside groups it's free with full metadata. Toggle the spoiler blur any time with <span class="inline-code">/nsfw on</span> / <span class="inline-code">/nsfw off</span>.</p>
+      </section>
+
+      <section id="cache">
+        <h2>⚡ Smart cache</h2>
+        <p>Every downloaded file is cached by URL. If you (or someone else) request the same link again, the bot re-sends the stored file instantly instead of re-downloading it. Use <span class="inline-code">/uncache URL</span> to force a fresh copy, and <span class="inline-code">/usage</span> to see your download history.</p>
+      </section>
+
+      <section id="groups">
+        <h2>👥 Group mode</h2>
+        <p>Add YourBot to a group and it gets noticeably better for everyone inside:</p>
+        <ul class="list-check">
+          <li>All limits doubled (see the comparison on the home page)</li>
+          <li>Media auto-sorted into topics, replies in the topic it was called from</li>
+          <li>Auto-pinned progress message</li>
+          <li><span class="inline-code">/img</span> delivers 10-item albums</li>
+          <li>NSFW content free, with full metadata</li>
+          <li>No forced channel subscription</li>
+          <li>No logging or caching of group content (configurable)</li>
+        </ul>
+        <p style="margin-top:12px">Send <span class="inline-code">/add_bot_to_group</span> in the bot for the full rundown.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></span>YourBot</a>
+        <p>A fast, free Telegram bot for downloading videos, audio and images from 1000+ websites.</p>
+      </div>
+      <div><h4>Bot</h4><a href="https://t.me/YourBotUsername" target="_blank" rel="noopener">Open in Telegram</a><a href="https://t.me/YourChannel" target="_blank" rel="noopener">News channel</a><a href="https://t.me/YourSupport" target="_blank" rel="noopener">Support</a></div>
+      <div><h4>Docs</h4><a href="features.html">Features</a><a href="commands.html">Commands</a><a href="guide.html">User guide</a><a href="faq.html">FAQ</a></div>
+      <div><h4>Hosting</h4><a href="deploy.html">Self-host guide</a><a href="deploy.html#env">Environment variables</a><a href="faq.html#troubleshooting">Troubleshooting</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> YourBot. Not affiliated with Telegram or any listed platform.</span>
+      <span>Respect copyrights — download only what you have the right to.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
